@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Feza Mugisho Cirezi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Médicament Finder</h1>
+        <form method="POST">
+            <input type="text" name="produit" placeholder="Entrez un médicament ou produit" value="{{ recherche }}">
+            <button type="submit">Rechercher</button>
+        </form>
+
+        {% if infos %}
+        <div class="card">
+            <h2>{{ infos.nom | title }}</h2>
+            <p><strong>Effets secondaires :</strong> {{ infos.effets }}</p>
+            <p><strong>Bienfaits :</strong> {{ infos.bienfaits }}</p>
+        </div>
+        {% elif recherche %}
+        <div class="card not-found">
+            <p>😔 Aucun résultat trouvé pour « {{ recherche }} ».</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
